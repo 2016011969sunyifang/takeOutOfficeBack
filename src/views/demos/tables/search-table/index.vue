@@ -1,9 +1,9 @@
 <template>
   <div>
-    <Alert message="查询表格" type="info" show-icon>
+    <!-- <Alert message="查询表格" type="info" show-icon>
       <template #description> 查询表格-查询表单使用示例 </template>
-    </Alert>
-    <Card title="查询表单基本使用示例" style="margin-top: 20px">
+    </Alert> -->
+    <Card title="站点信息查询">
       <dynamic-table
         ref="dynamicTableRef"
         size="small"
@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { Alert, Card } from 'ant-design-vue';
+  // import { Card } from 'ant-design-vue';
   import { DynamicTable, type DynamicTableInstance } from '@/components/core/dynamic-table';
   import { columns, tableData } from './columns';
   import { ref } from 'vue';

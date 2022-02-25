@@ -22,7 +22,7 @@ export function createRouterGuards(router: Router, whiteNameList: WhiteNameList)
         NProgress.done();
       } else {
         const hasRoute = router.hasRoute(to.name!);
-        // 如果不需要每次切换路由获取最新的动态路由，可把下面注释放开
+        // 如果不需要每次切换路新的动态路由，可把下面注释放开
         if (userStore.menus.length === 0) {
           // 从后台获取菜单
           await userStore.afterLogin();

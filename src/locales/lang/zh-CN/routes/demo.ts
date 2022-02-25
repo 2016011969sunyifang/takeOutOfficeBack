@@ -1,15 +1,15 @@
 export default {
-  demo: 'demo演示',
+  demo: '骑手岗位管理',
   button: '按钮的扩展',
   modal: '可拖拽弹窗',
   form: {
     demo: '表单演示',
     basic: '基础表单',
-    rule: '表单校验',
+    rule: '新增站点',
   },
   table: {
     demo: '表格演示',
-    searchTable: '查询表格',
+    searchTable: '职位查询',
     wzry: '王者荣耀',
     lol: '英雄联盟',
   },

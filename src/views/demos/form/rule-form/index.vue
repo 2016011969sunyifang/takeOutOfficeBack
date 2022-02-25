@@ -10,7 +10,10 @@
     <a-card>
       <schema-form ref="dynamicForm" :form-schema="formSchema">
         <template #operate-button>
-          <a-button type="primary" @click="confirm"> 确定 </a-button>
+          <div class="set-button">
+            <a-button size="large" @click="reset"> 重置 </a-button>
+            <a-button size="large" type="primary" @click="confirm"> 确定 </a-button>
+          </div>
         </template>
       </schema-form>
     </a-card>
@@ -25,7 +28,10 @@
 
 <script lang="ts" setup>
   import { ref } from 'vue';
-  import { Alert, message } from 'ant-design-vue';
+  import {
+    // Alert,
+    message,
+  } from 'ant-design-vue';
   import { SchemaForm } from '@/components/core/schema-form';
   import { schemas } from './form-schema';
 
@@ -41,6 +47,11 @@
 
     dynamicForm.value?.validate().then(() => message.success('验证通过！'));
   }
+  //重置选项
+  function reset() {
+    //@ts-ignore
+    dynamicForm.value.resetFields();
+  }
 </script>
 
 <style lang="less" scoped>
@@ -48,5 +59,15 @@
     button {
       margin-right: 12px;
     }
+  }
+  .set-button {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  /deep/.operate-button {
+    margin-left: 150px;
+    width: 300px;
   }
 </style>

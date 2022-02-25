@@ -47,6 +47,7 @@ const componentMap = {
   Select: Select,
   TreeSelect: TreeSelect,
   Tree: Tree,
+  TextArea: Input.TextArea,
   Switch: Switch,
   RadioGroup: Radio.Group,
   Checkbox: Checkbox,
