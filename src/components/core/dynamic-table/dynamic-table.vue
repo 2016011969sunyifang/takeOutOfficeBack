@@ -33,6 +33,7 @@
         :dataSource="tableData"
         @change="handleTableChange"
       >
+        <!-- Reflect.has 检查目标是否有此对象的方法 -->
         <template
           v-for="slotName in defaultSlots.filter((name) => Reflect.has($slots, name))"
           #[slotName]="slotData"
@@ -98,10 +99,15 @@
       QueryForm,
       ToolBar,
     },
+    // 如果你不希望组件的根元素继承特性，你可以在组件的选项中设置 inheritAttrs: false
     inheritAttrs: false,
     props: dynamicTableProps,
     emits: ['change', 'toggle-advanced'],
     setup(props, { emit, slots }) {
+      // getCurrentInstance 获取当前实例的方法
+      console.log('++++++++++++++++++++++++++++++++');
+      console.log(getCurrentInstance());
+      //将当前实例proxy代理的数据全部传给project 供子文件使用
       createTableContext(getCurrentInstance()!);
 
       const { exportData2Excel } = useExportData2Excel(getCurrentInstance()!);

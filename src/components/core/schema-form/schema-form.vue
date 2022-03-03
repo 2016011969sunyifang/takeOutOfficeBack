@@ -93,6 +93,8 @@
           ...schemaFormPropsRef.value,
         } as FormSchema;
       });
+      console.log('-------------------');
+      console.log(getFormProps);
 
       watchEffect(() => {
         if (Object.is(props.formSchema, oldFormSchema)) {

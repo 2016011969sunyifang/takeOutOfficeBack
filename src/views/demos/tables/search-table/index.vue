@@ -20,44 +20,62 @@
 <script lang="ts" setup>
   // import { Card } from 'ant-design-vue';
   import { DynamicTable, type DynamicTableInstance } from '@/components/core/dynamic-table';
-  import { columns, tableData } from './columns';
+  import { columns } from './columns';
   import { ref } from 'vue';
-
+  import { getSiteList } from '@/api/takeOut';
   const dynamicTableRef = ref<DynamicTableInstance>();
 
   // 展开搜索表单时更新英雄皮肤选项值
-  const toggleAdvanced = (e) => {
-    if (e) {
-      // 手动设置搜索表单的搜索项
-      dynamicTableRef.value?.getQueryFormRef().updateSchema([
-        {
-          field: 'price',
-          componentProps: {
-            options: [
-              {
-                label: '0-199',
-                value: '0-199',
-              },
-              {
-                label: '200-999',
-                value: '200-999',
-              },
-            ],
-          },
-        },
-      ]);
-    }
+  const toggleAdvanced = () => {
+    // if (e) {
+    //   // 手动设置搜索表单的搜索项
+    //   dynamicTableRef.value?.getQueryFormRef().updateSchema([
+    //     {
+    //       field: 'price',
+    //       componentProps: {
+    //         options: [
+    //           {
+    //             label: '6-7',
+    //             value: '6-7',
+    //           },
+    //           {
+    //             label: '6.5-7.5',
+    //             value: '6.5-7.5',
+    //           },
+    //           {
+    //             label: '7-8',
+    //             value: '7-8',
+    //           },
+    //           {
+    //             label: '7.5-8.5',
+    //             value: '7.5-8.5',
+    //           },
+    //         ],
+    //       },
+    //     },
+    //   ]);
+    // }
   };
 
   const loadData = async (params) => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve({
-          list: tableData,
-          ...params,
-        });
-      }, 500);
-    });
+    params.region ? (params.region = params.region[1]) : '';
+    let result = await getSiteList(params);
+    const pars = result.data;
+    return {
+      list: pars,
+      ...params,
+    };
+    // return new Promise((resolve) => {
+    //   let result = await getSiteList(params);
+    //   console.log(result);
+    //   const pars = result.data;
+    //   setTimeout(() => {
+    //     resolve({
+    //       list: pars,
+    //       ...params,
+    //     });
+    //   }, 500);
+    // });
   };
 </script>
 

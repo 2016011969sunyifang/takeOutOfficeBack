@@ -49,7 +49,6 @@
       cloneDeep(data).filter((n) => n.type !== 2),
       null,
     );
-
     return { list: formatMenu2Tree(cloneDeep(data), null) };
   };
 

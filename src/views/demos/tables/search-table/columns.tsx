@@ -14,6 +14,7 @@ export const tableData = Array.from({ length: 30 }).map((_, i) => ({
   region: '',
   webmaster: '',
   platform: ~~(Math.random() * 3),
+  businessCircle: '',
 }));
 
 // const getClothesByGender = (gender: number) => {
@@ -44,7 +45,150 @@ export const tableData = Array.from({ length: 30 }).map((_, i) => ({
 //   }
 //   return [];
 // };
+const getRegion = (code) => {
+  const regionMaps = [
+    {
+      value: '310101',
+      label: '黄浦区',
+    },
+    {
+      value: '310103',
+      label: '卢湾区',
+    },
+    {
+      value: '310104',
+      label: '徐汇区',
+    },
+    {
+      value: '310105',
+      label: '长宁区',
+    },
+    {
+      value: '310106',
+      label: '静安区',
+    },
+    {
+      value: '310107',
+      label: '普陀区',
+    },
+    {
+      value: '310108',
+      label: '闸北区',
+    },
+    {
+      value: '310109',
+      label: '虹口区',
+    },
+    {
+      value: '310110',
+      label: '杨浦区',
+    },
+    {
+      value: '310112',
+      label: '闵行区',
+    },
+    {
+      value: '310113',
+      label: '宝山区',
+    },
+    {
+      value: '310114',
+      label: '嘉定区',
+    },
+    {
+      value: '310115',
+      label: '浦东新区',
+    },
+    {
+      value: '310116',
+      label: '金山区',
+    },
+    {
+      value: '310117',
+      label: '松江区',
+    },
+    {
+      value: '310118',
+      label: '青浦区',
+    },
+    {
+      value: '310119',
+      label: '南汇区',
+    },
+    {
+      value: '310120',
+      label: '奉贤区',
+    },
+    {
+      value: '310230',
+      label: '崇明县',
+    },
+    {
+      value: '330102',
+      label: '上城区',
+    },
+    {
+      value: '330103',
+      label: '下城区',
+    },
+    {
+      value: '330104',
+      label: '江干区',
+    },
+    {
+      value: '330105',
+      label: '拱墅区',
+    },
+    {
+      value: '330106',
+      label: '西湖区',
+    },
+    {
+      value: '330108',
+      label: '滨江区',
+    },
+    {
+      value: '330109',
+      label: '萧山区',
+    },
+    {
+      value: '330110',
+      label: '余杭区',
+    },
+    {
+      value: '330111',
+      label: '富阳区',
+    },
+    {
+      value: '330112',
+      label: '临安区',
+    },
+    {
+      value: '330122',
+      label: '桐庐县',
+    },
+    {
+      value: '330127',
+      label: '淳安县',
+    },
+    {
+      value: '330182',
+      label: '建德市',
+    },
+  ];
+  let name = '';
+  regionMaps.map((ele) => {
+    if (ele.value == code) {
+      name = ele.label;
+    }
+  });
+  return name;
+};
+const getPlatForm = (platFormId) => {
+  const plat = ['饿了么', '美团', '星巴克'];
 
+  return plat[platFormId - 1];
+};
 // 数据项类型
 export type ListItemType = typeof tableData[number];
 // 使用TableColumn<ListItemType> 将会限制dataIndex的类型，但换来的是dataIndex有类型提示
@@ -59,281 +203,161 @@ export const columns: TableColumn<ListItemType>[] = [
       componentProps: () => ({
         options: [
           {
-            value: 'guide',
-            label: 'Guide',
+            value: '310100',
+            label: '上海',
             children: [
               {
-                value: 'disciplines',
-                label: 'Disciplines',
-                children: [
-                  {
-                    value: 'consistency',
-                    label: 'Consistency',
-                  },
-                  {
-                    value: 'feedback',
-                    label: 'Feedback',
-                  },
-                  {
-                    value: 'efficiency',
-                    label: 'Efficiency',
-                  },
-                  {
-                    value: 'controllability',
-                    label: 'Controllability',
-                  },
-                ],
+                value: '310101',
+                label: '黄浦区',
               },
               {
-                value: 'navigation',
-                label: 'Navigation',
-                children: [
-                  {
-                    value: 'side nav',
-                    label: 'Side Navigation',
-                  },
-                  {
-                    value: 'top nav',
-                    label: 'Top Navigation',
-                  },
-                ],
+                value: '310103',
+                label: '卢湾区',
+              },
+              {
+                value: '310104',
+                label: '徐汇区',
+              },
+              {
+                value: '310105',
+                label: '长宁区',
+              },
+              {
+                value: '310106',
+                label: '静安区',
+              },
+              {
+                value: '310107',
+                label: '普陀区',
+              },
+              {
+                value: '310108',
+                label: '闸北区',
+              },
+              {
+                value: '310109',
+                label: '虹口区',
+              },
+              {
+                value: '310110',
+                label: '杨浦区',
+              },
+              {
+                value: '310112',
+                label: '闵行区',
+              },
+              {
+                value: '310113',
+                label: '宝山区',
+              },
+              {
+                value: '310114',
+                label: '嘉定区',
+              },
+              {
+                value: '310115',
+                label: '浦东新区',
+              },
+              {
+                value: '310116',
+                label: '金山区',
+              },
+              {
+                value: '310117',
+                label: '松江区',
+              },
+              {
+                value: '310118',
+                label: '青浦区',
+              },
+              {
+                value: '310119',
+                label: '南汇区',
+              },
+              {
+                value: '310120',
+                label: '奉贤区',
+              },
+              {
+                value: '310230',
+                label: '崇明县',
               },
             ],
           },
           {
-            value: 'component',
-            label: 'Component',
+            value: '330100',
+            label: '杭州',
             children: [
               {
-                value: 'basic',
-                label: 'Basic',
-                children: [
-                  {
-                    value: 'layout',
-                    label: 'Layout',
-                  },
-                  {
-                    value: 'color',
-                    label: 'Color',
-                  },
-                  {
-                    value: 'typography',
-                    label: 'Typography',
-                  },
-                  {
-                    value: 'icon',
-                    label: 'Icon',
-                  },
-                  {
-                    value: 'button',
-                    label: 'Button',
-                  },
-                ],
+                value: '330102',
+                label: '上城区',
               },
               {
-                value: 'form',
-                label: 'Form',
-                children: [
-                  {
-                    value: 'radio',
-                    label: 'Radio',
-                  },
-                  {
-                    value: 'checkbox',
-                    label: 'Checkbox',
-                  },
-                  {
-                    value: 'input',
-                    label: 'Input',
-                  },
-                  {
-                    value: 'input-number',
-                    label: 'InputNumber',
-                  },
-                  {
-                    value: 'select',
-                    label: 'Select',
-                  },
-                  {
-                    value: 'cascader',
-                    label: 'Cascader',
-                  },
-                  {
-                    value: 'switch',
-                    label: 'Switch',
-                  },
-                  {
-                    value: 'slider',
-                    label: 'Slider',
-                  },
-                  {
-                    value: 'time-picker',
-                    label: 'TimePicker',
-                  },
-                  {
-                    value: 'date-picker',
-                    label: 'DatePicker',
-                  },
-                  {
-                    value: 'datetime-picker',
-                    label: 'DateTimePicker',
-                  },
-                  {
-                    value: 'upload',
-                    label: 'Upload',
-                  },
-                  {
-                    value: 'rate',
-                    label: 'Rate',
-                  },
-                  {
-                    value: 'form',
-                    label: 'Form',
-                  },
-                ],
+                value: '330103',
+                label: '下城区',
               },
               {
-                value: 'data',
-                label: 'Data',
-                children: [
-                  {
-                    value: 'table',
-                    label: 'Table',
-                  },
-                  {
-                    value: 'tag',
-                    label: 'Tag',
-                  },
-                  {
-                    value: 'progress',
-                    label: 'Progress',
-                  },
-                  {
-                    value: 'tree',
-                    label: 'Tree',
-                  },
-                  {
-                    value: 'pagination',
-                    label: 'Pagination',
-                  },
-                  {
-                    value: 'badge',
-                    label: 'Badge',
-                  },
-                ],
+                value: '330104',
+                label: '江干区',
               },
               {
-                value: 'notice',
-                label: 'Notice',
-                children: [
-                  {
-                    value: 'alert',
-                    label: 'Alert',
-                  },
-                  {
-                    value: 'loading',
-                    label: 'Loading',
-                  },
-                  {
-                    value: 'message',
-                    label: 'Message',
-                  },
-                  {
-                    value: 'message-box',
-                    label: 'MessageBox',
-                  },
-                  {
-                    value: 'notification',
-                    label: 'Notification',
-                  },
-                ],
+                value: '330105',
+                label: '拱墅区',
               },
               {
-                value: 'navigation',
-                label: 'Navigation',
-                children: [
-                  {
-                    value: 'menu',
-                    label: 'Menu',
-                  },
-                  {
-                    value: 'tabs',
-                    label: 'Tabs',
-                  },
-                  {
-                    value: 'breadcrumb',
-                    label: 'Breadcrumb',
-                  },
-                  {
-                    value: 'dropdown',
-                    label: 'Dropdown',
-                  },
-                  {
-                    value: 'steps',
-                    label: 'Steps',
-                  },
-                ],
+                value: '330106',
+                label: '西湖区',
               },
               {
-                value: 'others',
-                label: 'Others',
-                children: [
-                  {
-                    value: 'dialog',
-                    label: 'Dialog',
-                  },
-                  {
-                    value: 'tooltip',
-                    label: 'Tooltip',
-                  },
-                  {
-                    value: 'popover',
-                    label: 'Popover',
-                  },
-                  {
-                    value: 'card',
-                    label: 'Card',
-                  },
-                  {
-                    value: 'carousel',
-                    label: 'Carousel',
-                  },
-                  {
-                    value: 'collapse',
-                    label: 'Collapse',
-                  },
-                ],
-              },
-            ],
-          },
-          {
-            value: 'resource',
-            label: 'Resource',
-            children: [
-              {
-                value: 'axure',
-                label: 'Axure Components',
+                value: '330108',
+                label: '滨江区',
               },
               {
-                value: 'sketch',
-                label: 'Sketch Templates',
+                value: '330109',
+                label: '萧山区',
               },
               {
-                value: 'docs',
-                label: 'Design Documentation',
+                value: '330110',
+                label: '余杭区',
+              },
+              {
+                value: '330111',
+                label: '富阳区',
+              },
+              {
+                value: '330112',
+                label: '临安区',
+              },
+              {
+                value: '330122',
+                label: '桐庐县',
+              },
+              {
+                value: '330127',
+                label: '淳安县',
+              },
+              {
+                value: '330182',
+                label: '建德市',
               },
             ],
           },
         ],
       }),
     },
-    bodyCell: ({ record }) => <>{record.region}</>,
+    bodyCell: ({ record }) => <>{getRegion(record.region)}</>,
+  },
+  {
+    title: '商圈',
+    align: 'center',
+    dataIndex: 'businessCircle',
   },
   {
     title: '站点名称',
     align: 'center',
     dataIndex: 'name',
   },
+
   {
     title: '站长名称',
     align: 'center',
@@ -345,6 +369,26 @@ export const columns: TableColumn<ListItemType>[] = [
     dataIndex: 'price',
     formItemProps: {
       component: 'Select',
+      componentProps: {
+        options: [
+          {
+            label: '6-7',
+            value: '6-7',
+          },
+          {
+            label: '6.5-7.5',
+            value: '6.5-7.5',
+          },
+          {
+            label: '7-8',
+            value: '7-8',
+          },
+          {
+            label: '7.5-8.5',
+            value: '7.5-8.5',
+          },
+        ],
+      },
     },
     bodyCell: ({ record }) => <>{[record.price]}元</>,
   },
@@ -361,15 +405,15 @@ export const columns: TableColumn<ListItemType>[] = [
               const data = [
                 {
                   label: '饿了么',
-                  value: 0,
-                },
-                {
-                  label: '美团',
                   value: 1,
                 },
                 {
-                  label: '星巴克',
+                  label: '美团',
                   value: 2,
+                },
+                {
+                  label: '星巴克',
+                  value: 3,
                 },
               ];
               resolve(data);
@@ -378,7 +422,7 @@ export const columns: TableColumn<ListItemType>[] = [
         },
       },
     },
-    bodyCell: ({ record }) => <div>{['饿了么', '美团', '星巴克'][record.platform]}</div>,
+    bodyCell: ({ record }) => <div>{getPlatForm(record.platform)}</div>,
   },
   {
     title: '有无宿舍',
@@ -393,11 +437,11 @@ export const columns: TableColumn<ListItemType>[] = [
               const data = [
                 {
                   label: '有宿舍',
-                  value: 0,
+                  value: 1,
                 },
                 {
                   label: '无宿舍',
-                  value: 1,
+                  value: 2,
                 },
               ];
               resolve(data);
@@ -408,7 +452,7 @@ export const columns: TableColumn<ListItemType>[] = [
     },
     bodyCell: ({ record }) => (
       <Tag color={record.hasDormitory == 1 ? 'green' : 'default'}>
-        {['无宿舍', '有宿舍'][record.hasDormitory]}
+        {['有宿舍', '无宿舍'][record.hasDormitory - 1]}
       </Tag>
     ),
   },
@@ -425,7 +469,7 @@ export const columns: TableColumn<ListItemType>[] = [
               const data = [
                 {
                   label: '提供电车',
-                  value: 0,
+                  value: 2,
                 },
                 {
                   label: '电车自备',
@@ -439,8 +483,8 @@ export const columns: TableColumn<ListItemType>[] = [
       },
     },
     bodyCell: ({ record }) => (
-      <Tag color={record.hasElectroMobile == 1 ? 'green' : 'default'}>
-        {['电车自备', '提供电车'][record.hasElectroMobile]}
+      <Tag color={record.hasElectroMobile == 2 ? 'green' : 'default'}>
+        {['电车自备', '提供电车'][record.hasElectroMobile - 1]}
       </Tag>
     ),
   },
@@ -457,7 +501,7 @@ export const columns: TableColumn<ListItemType>[] = [
               const data = [
                 {
                   label: '已招满',
-                  value: 0,
+                  value: 2,
                 },
                 {
                   label: '热招中',
@@ -472,7 +516,7 @@ export const columns: TableColumn<ListItemType>[] = [
     },
     bodyCell: ({ record }) => (
       <Tag color={record.status == 1 ? 'red' : 'default'}>
-        {['已招满', '热招中'][record.status]}
+        {['热招中', '已招满'][record.status - 1]}
       </Tag>
     ),
   },
