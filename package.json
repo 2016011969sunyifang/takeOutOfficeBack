@@ -2,9 +2,9 @@
   "name": "vue3-antd-admin",
   "version": "0.1.4",
   "author": {
-    "name": "buqiyuan",
-    "email": "1743369777@qq.com",
-    "url": "https://github.com/buqiyuan"
+    "name": "sam",
+    "email": "2422617864@qq.com",
+    "url": "https://github.com"
   },
   "scripts": {
     "dev": "npm run serve",
